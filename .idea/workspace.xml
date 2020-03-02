@@ -80,4 +80,10 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="529" y="258" key="Github.ShareDialog" timestamp="1583156173111">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="529" y="258" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1583156173111" />
+  </component>
 </project>
