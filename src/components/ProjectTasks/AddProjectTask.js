@@ -12,14 +12,39 @@ class AddProjectTask extends Component {
         this.state = {
             nameTask: '',
             descriptionTask: '',
-            status: ''
+            status: '',
+            errors: []
         };
         this.onChangeTask = this.onChangeTask.bind(this);
         this.onSubmitTask = this.onSubmitTask.bind(this);
+        this.hasErrorFor = this.hasErrorFor.bind(this);
+        this.renderErrorFor = this.renderErrorFor.bind(this);
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors});
+        }
+    }
+
+    hasErrorFor(field) {
+        console.log('Field: ', field);
+        return !!this.state.errors[field];
+    }
+
+    renderErrorFor(field) {
+        if (this.hasErrorFor(field)) {
+            return (
+                <span className='invalid-feedback'>
+                    <strong>{this.state.errors[field]}</strong>
+                </span>
+            )
+        }
     }
 
     onChangeTask(e) {
         this.setState({[e.target.name] : e.target.value});
+        this.state.errors[e.target.name] = '';
     }
 
     onSubmitTask(e) {
@@ -34,6 +59,7 @@ class AddProjectTask extends Component {
     }
 
     render() {
+        const { errors } = this.state;
       return (
         <div className="addProjectTask">
           <div className="container">
@@ -49,12 +75,13 @@ class AddProjectTask extends Component {
                   <div className="form-group">
                     <input
                       type="text"
-                      className="form-control form-control-lg"
+                      className={ classnames('form-control form-control-lg', {'is-invalid' : errors.nameTask}) }
                       name="nameTask"
                       placeholder="Project Task Name"
                       value={this.state.nameTask}
                       onChange={this.onChangeTask}
                     />
+                    {this.renderErrorFor('nameTask')}
                   </div>
                   <div className="form-group">
                     <textarea
