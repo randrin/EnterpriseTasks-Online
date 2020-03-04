@@ -3,10 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="52b6a0c5-5e99-4b46-aa60-37d61f09fc04" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/projectTaskAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/projectTaskAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/types.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProjectBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProjectBoard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProjectTasks/AddProjectTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProjectTasks/AddProjectTask.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProjectTasks/ItemProjectTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProjectTasks/ItemProjectTask.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/errorsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/errorsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

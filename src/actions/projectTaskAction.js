@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS } from './types';
+import { GET_ERRORS, GET_PROJECT_TASKS, DELETE_PROJECT_TASK } from './types';
 
 export const addProjectTask = (newProjectTask, history) => async dispatch => {
     try {
@@ -13,6 +13,24 @@ export const addProjectTask = (newProjectTask, history) => async dispatch => {
         dispatch({
             type: GET_ERRORS,
             payload: error.response.data
+        });
+    }
+};
+
+export const getProjectTasks = () => async dispatch => {
+    const response = await axios.get('http://localhost:8084/api/tasks/getTasks');
+    dispatch({
+        type: GET_PROJECT_TASKS,
+        payload: response.data
+    });
+};
+
+export const deleteProjectTask = (id_task) => async dispatch => {
+    if (window.confirm(`Are you sure youwant to delete the task ID: ${id_task} ?`)) {
+        axios.delete(`http://localhost:8084/api/tasks/task/${id_task}`);
+        dispatch({
+            type: DELETE_PROJECT_TASK,
+            payload: id_task
         });
     }
 }

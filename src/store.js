@@ -9,7 +9,7 @@ const ReactReduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX
 
 let store;
 
-if (window.navigator.userAgent.includes('Chrome')) {
+if (window.navigator.userAgent.includes('Chrome') || window.navigator.userAgent.includes('Opera')) {
     store = createStore(
         rootReducer,
         initialState,
