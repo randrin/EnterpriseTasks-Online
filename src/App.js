@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './css/App.css';
 import ProjectBoardNavbar from './components/ProjectBoardNavbar';
 import ProjectBoard from './components/ProjectBoard';
 import { BrowserRouter as Router, Route} from 'react-router-dom'

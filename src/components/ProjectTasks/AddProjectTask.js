@@ -21,7 +21,7 @@ class AddProjectTask extends Component {
     this.renderErrorFor = this.renderErrorFor.bind(this);
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -43,7 +43,7 @@ class AddProjectTask extends Component {
 
   onChangeTask(e) {
     this.setState({ [e.target.name]: e.target.value });
-    this.setState({ errors: ''});
+    this.setState({ errors: "" });
   }
 
   onSubmitTask(e) {
@@ -129,8 +129,7 @@ class AddProjectTask extends Component {
                         <option value="PRIORITY_MEDIUM">MEDIUM</option>
                         <option value="PRIORITY_MAJOR">MAJOR</option>
                         <option value="PRIORITY_LOW">LOW</option>
-                        <option value="PRIORITY_PROGRESS">IN PROGRESS</option>
-                        <option value="PRIORITY_HOLD">IN HOLD</option>
+                        <option value="PRIORITY_HOLD">IN PROGRESS / HOLD</option>
                         <option value="PRIORITY_HIGH">HIGH</option>
                       </select>
                       {this.renderErrorFor("priority")}

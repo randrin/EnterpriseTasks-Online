@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.legende {
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+}
+.fa-minus {
+  color: #ffffff;
+}
