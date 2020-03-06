@@ -14,6 +14,7 @@ class EditProjectTask extends Component {
         nameTask: "",
         descriptionTask: "",
         status: "",
+        priority: "",
         errors: []
       };
       this.onChangeTask = this.onChangeTask.bind(this);
@@ -31,8 +32,8 @@ class EditProjectTask extends Component {
       if (nextProps.errors) {
         this.setState({ errors : nextProps.errors })
       }
-      const { id, nameTask, descriptionTask, status } = nextProps.project_task;
-      this.setState({ id, nameTask, descriptionTask, status });
+      const { id, nameTask, descriptionTask, status, priority } = nextProps.project_task;
+      this.setState({ id, nameTask, descriptionTask, status, priority });
     }
 
     hasErrorFor(field) {
@@ -57,15 +58,15 @@ class EditProjectTask extends Component {
     onSubmitTask(e) {
       e.preventDefault();
       const updateTask = {
+        id: this.state.id,
         nameTask: this.state.nameTask,
         descriptionTask: this.state.descriptionTask,
-        status: this.state.status
+        status: this.state.status,
+        priority: this.state.priority
       };
-      // console.log('newTask: ', newTask);
       this.props.addProjectTask(updateTask, this.props.history);
     }
 
-    
     render() {
       const { errors } = this.state;
       return (
@@ -98,7 +99,9 @@ class EditProjectTask extends Component {
                   </div>
                   <div className="form-group">
                     <textarea
-                      className="form-control form-control-lg"
+                      className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.descriptionTask
+                      })}
                       placeholder="Project Task Description"
                       name="descriptionTask"
                       value={this.state.descriptionTask}
@@ -106,17 +109,41 @@ class EditProjectTask extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <select
-                      className="form-control form-control-lg"
-                      name="status"
-                      value={this.state.status}
-                      onChange={this.onChangeTask}
-                    >
-                      <option value="">Select Status</option>
-                      <option value="TO_DO">TO DO</option>
-                      <option value="IN_PROGRESS">IN PROGRESS</option>
-                      <option value="DONE">DONE</option>
-                    </select>
+                    <div className="row">
+                      <div className="col-md-6 m-auto">
+                        <select
+                          className="form-control form-control-lg"
+                          name="status"
+                          value={this.state.status}
+                          onChange={this.onChangeTask}
+                        >
+                          <option value="">Select Status</option>
+                          <option value="TO_DO">TO DO</option>
+                          <option value="IN_PROGRESS">IN PROGRESS</option>
+                          <option value="DONE">DONE</option>
+                        </select>
+                      </div>
+                      <div className="col-md-6 m-auto">
+                        <select
+                          className={classnames("form-control form-control-lg", {
+                            "is-invalid": errors.priority
+                          })}
+                          name="priority"
+                          value={this.state.priority}
+                          onChange={this.onChangeTask}
+                        >
+                          <option value="">Select Priority</option>
+                          <option value="PRIORITY_MINOR">MINOR</option>
+                          <option value="PRIORITY_MEDIUM">MEDIUM</option>
+                          <option value="PRIORITY_MAJOR">MAJOR</option>
+                          <option value="PRIORITY_LOW">LOW</option>
+                          <option value="PRIORITY_PROGRESS">IN PROGRESS</option>
+                          <option value="PRIORITY_HOLD">IN HOLD</option>
+                          <option value="PRIORITY_HIGH">HIGH</option>
+                        </select>
+                        {this.renderErrorFor("priority")}
+                      </div>
+                    </div>
                   </div>
                   <input
                     type="submit"
