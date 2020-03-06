@@ -20,11 +20,11 @@ class ItemProjectTask extends Component {
             <div className="card-body bg-light">
                 <h5 className="card-title">{itemTask.nameTask}</h5>
                 <p className="card-text text-truncate">{itemTask.descriptionTask}</p>
-                <Link to="#" className="btn btn-primary">
-                  <i class="fa fa-edit"></i> View / Update
+                <Link to={`getProjectTask/${itemTask.id}`} className="btn btn-primary">
+                  <i className="fa fa-edit"></i> View / Update
                 </Link>
                 <button className="btn btn-danger ml-4" onClick={this.onDeleteTask.bind(this, itemTask.id)}>
-                  <i class="fa fa-trash"></i> Delete
+                  <i className="fa fa-trash"></i> Delete
                 </button>
             </div>
         </div>

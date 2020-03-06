@@ -20,14 +20,13 @@ class AddProjectTask extends Component {
     this.renderErrorFor = this.renderErrorFor.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
   hasErrorFor(field) {
-    console.log("Field: ", field);
     return !!this.state.errors[field];
   }
 
@@ -43,7 +42,7 @@ class AddProjectTask extends Component {
 
   onChangeTask(e) {
     this.setState({ [e.target.name]: e.target.value });
-    this.state.errors[e.target.name] = "";
+    this.setState({ errors: ''});
   }
 
   onSubmitTask(e) {
@@ -53,7 +52,6 @@ class AddProjectTask extends Component {
       descriptionTask: this.state.descriptionTask,
       status: this.state.status
     };
-    // console.log('newTask: ', newTask);
     this.props.addProjectTask(newTask, this.props.history);
   }
 
@@ -64,9 +62,13 @@ class AddProjectTask extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/" className="btn btn-danger">
-                <i className="fa fa-chevron-left"></i> Back to Board
-              </Link>
+              <br />
+              <div className="text-left">
+                <Link to="/" className="btn btn-danger">
+                  <i className="fa fa-chevron-left"></i> Back to Board
+                </Link>
+              </div>
+              <br />
               <h4 className="display-4 text-center">
                 Add / Update Project Task
               </h4>

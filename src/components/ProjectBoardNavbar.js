@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 class ProjectBoardNavbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
               <div className="container">
-                <a className="navbar-brand" href="Dashboard.html">
+                <Link className="navbar-brand" to="/">
                   Project Task Tool
-                </a>
+                </Link>
                 <button
                   className="navbar-toggler"
                   type="button"

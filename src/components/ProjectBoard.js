@@ -20,75 +20,77 @@ class ProjectBoard extends Component {
       let doneItems = [];
 
       const BoardAlgorithm = (project_tasks) => {
-          console.log('project_tasks.length : ', project_tasks.length);
         if (project_tasks.length < 1) {
-            return (
-            <div className="alert alert-info text-center" role="alert">
-                No Projet Task in board
-            </div>
-            );
+          return (
+          <div className="alert alert-info text-center" role="alert">
+              No Projet Task in board
+          </div>
+          );
         } else {
-            const tasks = project_tasks.map(project_task => (
-                <ItemProjectTask key={project_task.id} itemTask={project_task} />
-            ));
+          const tasks = project_tasks.map(project_task => (
+            <ItemProjectTask key={project_task.id} itemTask={project_task} />
+          ));
 
-            tasks.forEach(element => {
-                if (element.props.itemTask.status === 'TO_DO') {
-                todoItems.push(element);
-                }
-                if (element.props.itemTask.status === 'IN_PROGRESS') {
-                inProgressItems.push(element);
-                }
-                if (element.props.itemTask.status === 'DONE') {
-                doneItems.push(element);
-                }
-            });
+          tasks.forEach(element => {
+            if (element.props.itemTask.status === 'TO_DO') {
+              todoItems.push(element);
+            }
+            if (element.props.itemTask.status === 'IN_PROGRESS') {
+              inProgressItems.push(element);
+            }
+            if (element.props.itemTask.status === 'DONE') {
+              doneItems.push(element);
+            }
+          });
         }
 
         return (
-            <React.Fragment>
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-4">
-                      <div className="card text-center mb-2">
-                        <div className="card-header bg-secondary text-white">
-                          <h3>TO DO</h3>
-                        </div>
+          <React.Fragment>
+            <div className="container">
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="card text-center mb-2">
+                      <div className="card-header bg-secondary text-white">
+                        <h3>TO DO</h3>
                       </div>
-                      {todoItems}
                     </div>
-                    <div className="col-md-4">
-                      <div className="card text-center mb-2">
-                        <div className="card-header bg-primary text-white">
-                          <h3>In Progress</h3>
-                        </div>
+                    {todoItems}
+                  </div>
+                  <div className="col-md-4">
+                    <div className="card text-center mb-2">
+                      <div className="card-header bg-primary text-white">
+                        <h3>In Progress</h3>
                       </div>
-                      {inProgressItems}
                     </div>
-                    <div className="col-md-4">
-                      <div className="card text-center mb-2">
-                        <div className="card-header bg-success text-white">
-                          <h3>Done</h3>
-                        </div>
+                    {inProgressItems}
+                  </div>
+                  <div className="col-md-4">
+                    <div className="card text-center mb-2">
+                      <div className="card-header bg-success text-white">
+                        <h3>Done</h3>
                       </div>
-                      {doneItems}
                     </div>
+                    {doneItems}
                   </div>
                 </div>
-            </React.Fragment>
+              </div>
+          </React.Fragment>
         );
       }
 
       BoardContent = BoardAlgorithm(project_tasks);
 
       return (
-          <div className="container">
-            <Link to="/addProjetTask" className="btn btn-primary mb-3">
+        <div className="container">
+          <br />
+          <div className="text-left">
+            <Link to="/addProjectTask" className="btn btn-primary mb-3">
               <i className="fa fa-plus-circle"> New Project Task</i>
             </Link>
-            <br />
-            <hr />
-            {BoardContent}
+          </div>
+          <br />
+          <hr />
+          {BoardContent}
         </div>
       );
   }
