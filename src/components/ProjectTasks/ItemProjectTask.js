@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { deleteProjectTask } from "../../actions/projectTaskAction";
+import { deleteProjectTask } from "../../actions/projectTasksAction";
 
 class ItemProjectTask extends Component {
   onDeleteTask(id_task) {

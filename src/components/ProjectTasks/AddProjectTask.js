@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addProjectTask } from "../../actions/projectTaskAction";
+import { addProjectTask } from "../../actions/projectTasksAction";
 import classnames from "classnames";
 
 class AddProjectTask extends Component {

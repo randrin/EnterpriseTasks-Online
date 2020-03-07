@@ -26,7 +26,7 @@ export const getProjectTasks = () => async dispatch => {
 };
 
 export const deleteProjectTask = (id_task) => async dispatch => {
-    if (window.confirm(`Are you sure youwant to delete the task ID: ${id_task} ?`)) {
+    if (window.confirm(`Are you sure you want to delete the task ID: ${id_task} ?`)) {
         axios.delete(`http://localhost:8084/api/tasks/task/${id_task}`);
         dispatch({
             type: DELETE_PROJECT_TASK,

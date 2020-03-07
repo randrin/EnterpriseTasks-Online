@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import {
   getProjectTask,
   addProjectTask
-} from "../../actions/projectTaskAction";
+} from "../../actions/projectTasksAction";
 import classnames from "classnames";
 
 class EditProjectTask extends Component {

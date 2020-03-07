@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import ItemProjectTask from "./ProjectTasks/ItemProjectTask";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getProjectTasks } from "../actions/projectTaskAction";
+import { getProjectTasks } from "../actions/projectTasksAction";
 
-class ProjectBoard extends Component {
+class ProjectTasksBoard extends Component {
   componentDidMount() {
     this.props.getProjectTasks();
   }
@@ -115,7 +115,7 @@ class ProjectBoard extends Component {
   }
 }
 
-ProjectBoard.propTypes = {
+ProjectTasksBoard.propTypes = {
   getProjectTasks: PropTypes.func.isRequired,
   project_tasks: PropTypes.object.isRequired
 };
@@ -124,4 +124,4 @@ const mapStateToProps = state => ({
   project_tasks: state.project_task
 });
 
-export default connect(mapStateToProps, { getProjectTasks })(ProjectBoard);
+export default connect(mapStateToProps, { getProjectTasks })(ProjectTasksBoard);
