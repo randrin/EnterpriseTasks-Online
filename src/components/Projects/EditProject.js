@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addProject } from "../../actions/projectsAction";
+import { addProject, getProject } from "../../actions/projectsAction";
 import classnames from "classnames";
-import moment from 'moment';
+import moment from "moment";
 
-class AddProject extends Component {
+class EditProject extends Component {
   constructor() {
     super();
     this.state = {
+      id: "",
       projectName: "",
       projectDescription: "",
       projectCreatedBy: "",
@@ -26,10 +27,35 @@ class AddProject extends Component {
     this.renderErrorFor = this.renderErrorFor.bind(this);
   }
 
+  componentDidMount() {
+    const { id_project } = this.props.match.params;
+    this.props.getProject(id_project);
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+    const {
+      id,
+      projectName,
+      projectDescription,
+      projectCreatedBy,
+      projectLogo,
+      projectStart,
+      projectEnd,
+      priority
+    } = nextProps.project;
+    this.setState({
+      id,
+      projectName,
+      projectDescription,
+      projectCreatedBy,
+      projectLogo,
+      projectStart,
+      projectEnd,
+      priority
+    });
   }
 
   hasErrorFor(field) {
@@ -53,16 +79,19 @@ class AddProject extends Component {
 
   onSubmitProject(e) {
     e.preventDefault();
-    const newProject = {
+    const updateProject = {
+      id: this.state.id,
       projectName: this.state.projectName,
       projectDescription: this.state.projectDescription,
       projectCreatedBy: this.state.projectCreatedBy,
       projectLogo: this.state.projectLogo,
-      projectStart: moment(this.state.projectStart).format('DD-MM-YYYY HH:mm:ss'),
-      projectEnd: moment(this.state.projectEnd).format('DD-MM-YYYY HH:mm:ss'),
+      projectStart: moment(this.state.projectStart).format(
+        "DD-MM-YYYY HH:mm:ss"
+      ),
+      projectEnd: moment(this.state.projectEnd).format("DD-MM-YYYY HH:mm:ss"),
       priority: this.state.priority
     };
-    this.props.addProject(newProject, this.props.history);
+    this.props.addProject(updateProject, this.props.history);
   }
 
   render() {
@@ -116,7 +145,10 @@ class AddProject extends Component {
                         })}
                         placeholder="Project Start"
                         name="projectStart"
-                        value={this.state.projectStart}
+                        pattern="yyyy-MM-dd"
+                        value={moment(this.state.projectStart).format(
+                            "DD-MM-YYYY"
+                        )}
                         onChange={this.onChangeProject}
                       />
                       {this.renderErrorFor("valid")}
@@ -129,7 +161,10 @@ class AddProject extends Component {
                         })}
                         placeholder="Project End"
                         name="projectEnd"
-                        value={this.state.projectEnd}
+                        pattern="DD-MM-YYYY"
+                        value={moment(this.state.projectEnd).format(
+                          "DD-MM-YYYY"
+                        )}
                         onChange={this.onChangeProject}
                       />
                       {this.renderErrorFor("valid")}
@@ -191,13 +226,18 @@ class AddProject extends Component {
   }
 }
 
-AddProject.propTypes = {
+EditProject.propTypes = {
+  getProject: PropTypes.func.isRequired,
   addProject: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  project: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
+  project: state.project.project,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addProject })(AddProject);
+export default connect(mapStateToProps, { getProject, addProject })(
+  EditProject
+);
